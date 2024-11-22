@@ -28,9 +28,9 @@ const connection =  mysql.createConnection({
 connection.connect();
 
 //REPORT - CRUD
-app.get("/api/members", (req, res) => {
+app.get("/api/decks", (req, res) => {
 
-    connection.query("SELECT * FROM userdata", (err, rows, fields) => {
+    connection.query("SELECT * FROM deck_user", (err, rows, fields) => {
         if(err) throw err;
         res.json(rows)
 
@@ -38,12 +38,12 @@ app.get("/api/members", (req, res) => {
 })
 
 //REPORT - CRUD - SEARCH
-app.get("/api/members/:id", (req, res) => {
+app.get("/api/decks/:deck_id", (req, res) => {
     const id = req.params.id
     //const first_name = req.params.first_name
     //res.send(id)
     //res.send(first_name)
-    connection.query(`SELECT * FROM userdata WHERE id = ${id}`, (err, rows, fields) => {
+    connection.query(`SELECT * FROM deck_user WHERE deck_id = ${deck_id}`, (err, rows, fields) => {
         if(err) throw err;
         if(rows.length > 0){
             res.json(rows)
@@ -56,13 +56,13 @@ app.get("/api/members/:id", (req, res) => {
 
 //POST - CREATE - CRUD
 app.use(express.urlencoded({extended: false}))
-app.post("/api/members", (req, res) => {
+app.post("/api/decks/", (req, res) => {
     const fname = req.body.fname;
     const lname = req.body.lname;
     const email = req.body.email;
     const gender = req.body.gender;
 
-    connection.query(`INSERT INTO userdata (first_name, last_name, email, gender) VALUES ('${fname}', '${lname}', '${email}', '${gender}')`, (err, rows, fields) => {
+    connection.query(`INSERT INTO userdata (deck_id, card_id, card_question, card_answer) VALUES ('${deck_id}', '${card_id}', '${card_question}', '${card_answer}')`, (err, rows, fields) => {
         if(err) throw err;
         res.json({msg: `Successfully inserted`})
     })
@@ -70,34 +70,34 @@ app.post("/api/members", (req, res) => {
 })
 
 
-//POST - CREATE - CRUD
-app.use(express.urlencoded({extended: false}))
-app.put("/api/members", (req, res) => {
-    const fname = req.body.fname;
-    const lname = req.body.lname;
-    const email = req.body.email;
-    const gender = req.body.gender;
-    const id = req.body.id;
+// //POST - CREATE - CRUD
+// app.use(express.urlencoded({extended: false}))
+// app.put("/api/members", (req, res) => {
+//     const fname = req.body.fname;
+//     const lname = req.body.lname;
+//     const email = req.body.email;
+//     const gender = req.body.gender;
+//     const id = req.body.id;
 
-    connection.query(`UPDATE userdata SET first_name='${fname}', last_name='${lname}', email='${email}', gender='${gender}' WHERE id='${id}'`, (err, rows, fields) => {
-        if(err) throw err;
-        res.json({msg: `Success`})
-    })
+//     connection.query(`UPDATE userdata SET first_name='${fname}', last_name='${lname}', email='${email}', gender='${gender}' WHERE id='${id}'`, (err, rows, fields) => {
+//         if(err) throw err;
+//         res.json({msg: `Success`})
+//     })
 
-})
+// })
 
-// DELETE
-app.use(express.urlencoded({extended: false}))
-app.delete("/api/members/", (req, res) => {
+// // DELETE
+// app.use(express.urlencoded({extended: false}))
+// app.delete("/api/members/", (req, res) => {
 
-    const id = req.body.id
-    connection.query(`DELETE FROM userdata WHERE id = '${id}'`, (err, rows, fields) => {
-        if(err) throw err;
-        res.json({msg: `Successfully yeeted`})
+//     const id = req.body.id
+//     connection.query(`DELETE FROM userdata WHERE id = '${id}'`, (err, rows, fields) => {
+//         if(err) throw err;
+//         res.json({msg: `Successfully yeeted`})
 
-    })
+//     })
 
-})
+// })
 
 app.listen(5001, () => {
     console.log(`Server is running in port ${PORT}`);
