@@ -57,7 +57,7 @@ app.get("/api/decks/:deck_id", (req, res) => {
 //POST - CREATE - CRUD
 app.use(express.urlencoded({extended: false}))
 app.post("/api/decks/", (req, res) => {
-    const deck_name = req.body.deck_id;
+    const deck_name = req.body.deck_name;
     const deck_id = req.body.deck_id;
     const card_id = req.body.card_id;
     const card_question = req.body.card_question;
