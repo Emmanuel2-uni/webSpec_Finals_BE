@@ -63,7 +63,7 @@ app.post("/api/decks/", (req, res) => {
     const card_question = req.body.card_question;
     const card_answer = req.body.card_answer;
 
-    connection.query(`INSERT INTO userdata (deck_id, deck_name, card_id, card_question, card_answer) VALUES ('${deck_id}', '${deck_name}', '${card_id}', '${card_question}', '${card_answer}')`, (err, rows, fields) => {
+    connection.query(`INSERT INTO deck_user (deck_id, deck_name, card_id, card_question, card_answer) VALUES ('${deck_id}', '${deck_name}', '${card_id}', '${card_question}', '${card_answer}')`, (err, rows, fields) => {
         if(err) throw err;
         res.json({msg: `Successfully inserted`})
     })
