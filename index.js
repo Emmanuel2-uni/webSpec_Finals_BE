@@ -57,12 +57,13 @@ app.get("/api/decks/:deck_id", (req, res) => {
 //POST - CREATE - CRUD
 app.use(express.urlencoded({extended: false}))
 app.post("/api/decks/", (req, res) => {
-    const fname = req.body.fname;
-    const lname = req.body.lname;
-    const email = req.body.email;
-    const gender = req.body.gender;
+    const deck_name = req.body.deck_id;
+    const deck_id = req.body.deck_id;
+    const card_id = req.body.card_id;
+    const card_question = req.body.card_question;
+    const card_answer = req.body.card_answer;
 
-    connection.query(`INSERT INTO userdata (deck_id, card_id, card_question, card_answer) VALUES ('${deck_id}', '${card_id}', '${card_question}', '${card_answer}')`, (err, rows, fields) => {
+    connection.query(`INSERT INTO userdata (deck_id, deck_name, card_id, card_question, card_answer) VALUES ('${deck_id}', '${deck_name}', '${card_id}', '${card_question}', '${card_answer}')`, (err, rows, fields) => {
         if(err) throw err;
         res.json({msg: `Successfully inserted`})
     })
