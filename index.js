@@ -43,7 +43,7 @@ app.get("/api/decks/:deck_id", (req, res) => {
     //const first_name = req.params.first_name
     //res.send(id)
     //res.send(first_name)
-    connection.query(`SELECT * FROM deck_user WHERE deck_id = ${deck_id}`, (err, rows, fields) => {
+    connection.query(`SELECT * FROM deck_user WHERE deck_id = '${deck_id}'`, (err, rows, fields) => {
         if(err) throw err;
         if(rows.length > 0){
             res.json(rows)
