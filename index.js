@@ -92,7 +92,7 @@ app.use(express.urlencoded({extended: false}))
 app.delete("/api/decks", (req, res) => {
 
     const card_id = req.body.card_id
-    connection.query(`DELETE FROM deck_user WHERE card_id=${card_id})`, (err, rows, fields) => {
+    connection.query(`DELETE FROM deck_user WHERE card_id=${card_id}`, (err, rows, fields) => {
         if(err) throw err;
         res.json({msg: `Successfully yeeted`})
 
