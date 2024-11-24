@@ -43,7 +43,7 @@ app.get("/api/decks/:deck_id", (req, res) => {
     //const first_name = req.params.first_name
     //res.send(id)
     //res.send(first_name)
-    connection.query(`SELECT * FROM deck_user WHERE deck_id = '${deck_id}'`, (err, rows, fields) => {
+    connection.query(`SELECT * FROM deck_user WHERE deck_id = ${deck_id}`, (err, rows, fields) => {
         if(err) throw err;
         if(rows.length > 0){
             res.json(rows)
@@ -92,7 +92,7 @@ app.use(express.urlencoded({extended: false}))
 app.delete("/api/decks/", (req, res) => {
 
     const card_id = req.body.card_id
-    connection.query(`DELETE FROM deck_user WHERE card_id = ${card_id}`, (err, rows, fields) => {
+    connection.query(`DELETE FROM deck_user WHERE card_id = '${card_id}'`, (err, rows, fields) => {
         if(err) throw err;
         res.json({msg: `Successfully yeeted`})
 
