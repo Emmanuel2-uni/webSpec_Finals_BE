@@ -87,18 +87,18 @@ app.post("/api/decks/", (req, res) => {
 
 // })
 
-// // DELETE
-// app.use(express.urlencoded({extended: false}))
-// app.delete("/api/members/", (req, res) => {
+// DELETE
+app.use(express.urlencoded({extended: false}))
+app.delete("/api/decks/", (req, res) => {
 
-//     const id = req.body.id
-//     connection.query(`DELETE FROM userdata WHERE id = '${id}'`, (err, rows, fields) => {
-//         if(err) throw err;
-//         res.json({msg: `Successfully yeeted`})
+    const id = req.body.card_id
+    connection.query(`DELETE FROM deck_user WHERE id = '${card_id}'`, (err, rows, fields) => {
+        if(err) throw err;
+        res.json({msg: `Successfully yeeted`})
 
-//     })
+    })
 
-// })
+})
 
 app.listen(5001, () => {
     console.log(`Server is running in port ${PORT}`);
