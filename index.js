@@ -95,7 +95,7 @@ app.delete("/api/decks/", (req, res) => {
     connection.query(`DELETE FROM deck_user WHERE card_id = '${card_id}'`, (err, rows, fields) => {
         if(err) throw err;
         //res.json({msg: `Successfully yeeted`})
-        res.json({msg: `${card_id}`}
+        res.json({msg: `${card_id}`})
 
     })
 
