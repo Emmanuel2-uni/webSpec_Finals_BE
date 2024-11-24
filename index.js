@@ -89,7 +89,7 @@ app.post("/api/decks/", (req, res) => {
 
 // DELETE
 app.use(express.urlencoded({extended: false}))
-app.get("/api/decks/", (req, res) => {
+app.delete("/api/decks", (req, res) => {
 
     const card_id = req.body.card_id
     connection.query(`DELETE FROM deck_user WHERE (card_id='${card_id}')`, (err, rows, fields) => {
